@@ -1,5 +1,11 @@
+package Sorting;
+
 public class MergeSort {
-    void mSort(int arr[], int left, int right){
+    void mergeSort(int arr[]){
+        mSort(arr, 0, arr.length-1);
+    }
+
+    private void mSort(int arr[], int left, int right){
         if ( right > left){
             // split array in half
             int middle = (left+right)/2;
@@ -11,7 +17,7 @@ public class MergeSort {
             merge(arr, left , middle , right);
         }
     }
-    void merge(int arr[], int l, int m, int r){
+    private void merge(int arr[], int l, int m, int r){
         // create temp arrays so we can merge them
         int size1 = m-l+1;
         int size2 = r-m;
