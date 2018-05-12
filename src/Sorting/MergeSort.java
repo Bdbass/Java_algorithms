@@ -25,17 +25,19 @@ public class MergeSort {
         int arr2[] = new int[size2];
 
         // fill temp array one with l to m values
+        int j = l;
         for (int i = 0; i < size1; i++){
-            arr1[i] = arr[i];
+            arr1[i] = arr[j++];
         }
         //fill temp array two with m to r values
-        for (int i = m; i < size2; i++){
-            arr2[i] = arr[i];
+        j = m+1;
+        for (int i = 0; i < size2; i++){
+            arr2[i] = arr[j++];
         }
         // merge arrays back together
         int s = l; // the start of arr
         int s1 = 0; // the start of arr1
-        int s2 = m; // the start of arr2
+        int s2 = 0; // the start of arr2
 
         // while neither array is empty start
         // putting them back together from smallest->largest
