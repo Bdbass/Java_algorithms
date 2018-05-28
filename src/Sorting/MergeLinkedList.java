@@ -17,7 +17,7 @@ public class MergeLinkedList {
     static void MergeSort(linkedList unsorted){
         Node newHead = Partiton(unsorted.head); // gets the new head of the sorted list
         unsorted.head = newHead; // updates the unsorted list head to the new head
-        // updates the unosorted listList tail to the correct tail, now it is sorted
+        // updates the unsorted listList tail to the correct tail, now it is sorted
         Node temp = newHead;
         while (temp.nextptr != null){
             temp = temp.nextptr;
