@@ -33,7 +33,7 @@ public class Maze {
     }
     private void ParseLine(String line, int currentY){
         for (int i = 0; i < myMaze.length; i++) {
-            myMaze[i][currentY] = new MazeNode(Integer.parseInt(line.substring(i, i+1)));
+            myMaze[i][currentY] = new MazeNode(Integer.parseInt(line.substring(i, i+1)), i, currentY);
         }
     }
     public void PrintMaze(){
