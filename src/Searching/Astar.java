@@ -10,23 +10,24 @@ public class Astar {
     public static void main(String args[]) {
         Maze maze = new Maze("Maze.txt");
         maze.PrintMaze();
-        //Dijkstras.BackTrack(Astar(maze, "E", "C"));
+        RecursiveBackTrack(AStar(maze, new Pair<>(2,2), new Pair<>(0,2)));
     }
 
+    private static void RecursiveBackTrack(MazeNode mazeNode){
+        if (mazeNode.prev != null) RecursiveBackTrack(mazeNode.prev);
+        System.out.println("x: " + mazeNode.x + " y: " +mazeNode.y);
+    }
     //returns true if the given start and end are in the bounds of the maze and not an obstacle
-    static boolean ValidateEntries(Pair<Integer, Integer> start, Pair<Integer, Integer> end, Maze maze) {
-        if (start.getKey() >= 0 && start.getKey() < maze.myMaze.length
+    private static boolean ValidateEntries(Pair<Integer, Integer> start, Pair<Integer, Integer> end, Maze maze) {
+        return start.getKey() >= 0 && start.getKey() < maze.myMaze.length
                 && start.getValue() >= 0 && start.getValue() < maze.myMaze[0].length &&
                 end.getKey() >= 0 && end.getKey() < maze.myMaze.length &&
                 end.getValue() >= 0 && end.getValue() < maze.myMaze[0].length
                 && maze.myMaze[start.getKey()][start.getValue()].value == 0 &&
-                maze.myMaze[end.getKey()][end.getValue()].value == 0){
-            return true;
-        }
-        return false;
+                maze.myMaze[end.getKey()][end.getValue()].value == 0;
     }
     //uses manhattan distance to form a heuristic, with walls being cost of 2 and open paths a cost of 1
-    static double heuristic(Pair<Integer, Integer> start, Pair<Integer, Integer> end, Maze maze){
+    private static double heuristic(Pair<Integer, Integer> start, Pair<Integer, Integer> end, Maze maze){
         // initialize an array list to store the MazeNodes
         ArrayList<MazeNode> path = new ArrayList<>();
         // initialize start and end points for easier reference
@@ -49,7 +50,7 @@ public class Astar {
     }
 
     // returns all the neighbors of a given node
-    static ArrayList<MazeNode>GetNeighbors(MazeNode current, Maze maze){
+    private static ArrayList<MazeNode>GetNeighbors(MazeNode current, Maze maze){
         ArrayList<MazeNode> neighbors = new ArrayList<>();
         //possible neighbors are top, bottom, left, right
         for (int x = current.x-1, y = current.y-1; x < current.x+2 && y < current.y+2; x+=2, y+=2){
@@ -64,7 +65,7 @@ public class Astar {
     }
 
     //Astar's shortest path algorithm
-    static MazeNode Astar(Maze maze, Pair<Integer, Integer> start, Pair<Integer, Integer> end) {
+    static MazeNode AStar(Maze maze, Pair<Integer, Integer> start, Pair<Integer, Integer> end) {
         // return null if graph does not contain either start or end or either of them are walls
         MazeNode NOTFOUND = new MazeNode(-1, -1, -1);
         if (!ValidateEntries(start, end, maze)) {
