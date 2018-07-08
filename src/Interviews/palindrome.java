@@ -3,9 +3,9 @@ package Interviews;
 public class palindrome {
 
     //returns second half of the reversed linked list
-    static Sorting.Node ReverseHalfLinkedList (Sorting.Node head){
+    static Sorting.Node ReverseHalfLinkedList (Sorting.linkedList list){
         //find half-way point
-        Sorting.Node half = Split(head);
+        Sorting.Node half = Split(list.head);
         //reverse linked list
         return reverse(half);
     }
@@ -24,9 +24,24 @@ public class palindrome {
         }
         return slow;
     }
-    //fix me
+    //Reverse a linked list
     static Sorting.Node reverse(Sorting.Node head){
-        return head;
+        //create three pointers
+        Sorting.Node p1 = null;
+        Sorting.Node p2 = head;
+        Sorting.Node p3 = head.nextptr;
+
+        //reverse linked list
+        while (p3 != null){
+            p2.nextptr = p1;
+            p1 = p2;
+            p2 = p3;
+            p3 = p3.nextptr;
+        }
+        //still need to do one more reverse
+        p2.nextptr = p1;
+
+        return p2;
     }
 
 
@@ -63,6 +78,14 @@ public class palindrome {
 
     //test method
     public static void main(String args[]) {
-        System.out.println(LongestPalindrome("sdfabocobaasdf"));
+        //System.out.println(LongestPalindrome("sdfabocobaasdf"));
+        Sorting.linkedList list = new Sorting.linkedList();
+        list.add(new int[]{1,2,3,4,5,6,7,8,9,10,11});
+        Sorting.Node head = ReverseHalfLinkedList(list);
+        Sorting.Node temp = head;
+        while (temp != null){
+            System.out.print(temp.data + "->");
+            temp = temp.nextptr;
+        }
     }
 }

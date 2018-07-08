@@ -1,29 +1,34 @@
 package Sorting;
 
 public class linkedList {
-    Node head;
-    Node tail;
+    public Node head;
+    public Node tail;
     int size;
 
-    linkedList(){
+    public linkedList(){
         head = tail = null;
         size = 0;
     }
-    linkedList(Node _head) {
+    public linkedList(Node _head) {
         head = tail = _head;
         size = 1;
     }
-    void add(int data){
-        tail.nextptr = new Node(data);
-        tail = tail.nextptr;
+    public void add(int data){
+        if (tail == null){
+            tail = head = new Node(data);
+        }else {
+            tail.nextptr = new Node(data);
+            tail = tail.nextptr;
+        }
+
         size++;
     }
-    void add(int[] array){
+    public void add(int[] array){
         for (int i: array){
             add(i);
         }
     }
-    void printList(){
+    public void printList(){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data+" ");
