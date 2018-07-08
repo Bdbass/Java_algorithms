@@ -1,10 +1,10 @@
 package Sorting;
 
 public class Node {
-    int data;
-    Node nextptr;
+    public int data;
+    public Node nextptr;
 
-    Node(int val){
+    public Node(int val){
         data = val;
         nextptr = null;
     }

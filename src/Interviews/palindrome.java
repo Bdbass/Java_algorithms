@@ -2,6 +2,35 @@ package Interviews;
 
 public class palindrome {
 
+    //returns second half of the reversed linked list
+    static Sorting.Node ReverseHalfLinkedList (Sorting.Node head){
+        //find half-way point
+        Sorting.Node half = Split(head);
+        //reverse linked list
+        return reverse(half);
+    }
+
+    //returns the middle of a linked list
+    static Sorting.Node Split(Sorting.Node head){
+        //using slow and fast pointers
+        Sorting.Node slow  = head;
+        Sorting.Node fast = slow;
+        while (fast != null){
+            fast = fast.nextptr;
+            if (fast != null){
+                fast = fast.nextptr;
+                slow = slow.nextptr;
+            }
+        }
+        return slow;
+    }
+    //fix me
+    static Sorting.Node reverse(Sorting.Node head){
+        return head;
+    }
+
+
+    //returns the longest palindrome
     static String LongestPalindrome(String input){
         //initialize vars
         String longest_p = "";
