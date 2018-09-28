@@ -38,7 +38,7 @@ public class Main {
     }
 
     // generates random array of size n with numbers 1-100
-    static int[] generateRandomArray(int n){
+    public static int[] generateRandomArray(int n){
 
         // make an array to hold the random numbers, make a random variable
         int newArray[] = new int[n];
